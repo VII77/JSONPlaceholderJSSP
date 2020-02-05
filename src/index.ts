@@ -346,7 +346,7 @@ function onexecutePostsGetById(parameters: SingleRecord, properties: SingleRecor
             "com.k2.sample.json.posts.body": obj.body
         });
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts/' + parameters["com.k2.sample.json.posts.id"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
     xhr.send();
 }
 
@@ -367,7 +367,7 @@ function onexecutePostsGetByUserId(parameters: SingleRecord, properties: SingleR
             });
         }
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts?userId=' + parameters["com.k2.sample.json.posts.userId"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts?userId=' + properties["com.k2.sample.json.posts.userId"]);
     xhr.send();
 }
 
@@ -419,7 +419,7 @@ function onexecutePostsUpdate(parameters: SingleRecord, properties: SingleRecord
             "com.k2.sample.json.posts.body": obj.body
         });
     };
-    xhr.open("PUT", 'https://jsonplaceholder.typicode.com/posts/' + parameters["com.k2.sample.json.posts.id"]);
+    xhr.open("PUT", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(data);
 }
@@ -431,7 +431,7 @@ function onexecutePostsDelete(parameters: SingleRecord, properties: SingleRecord
         if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
         //console.log(xhr.responseText);
     };
-    xhr.open("DELETE", 'https://jsonplaceholder.typicode.com/posts/' + parameters["com.k2.sample.json.posts.id"]);
+    xhr.open("DELETE", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }
@@ -466,17 +466,15 @@ function onexecuteCommentsGetById(parameters: SingleRecord, properties: SingleRe
         
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.comments.id": obj[key].id,
-                "com.k2.sample.json.comments.postId": obj[key].postId,
-                "com.k2.sample.json.comments.name": obj[key].name,
-                "com.k2.sample.json.comments.email": obj[key].email,
-                "com.k2.sample.json.comments.body": obj[key].body
-            });
-        }
+        postResult({
+            "com.k2.sample.json.comments.id": obj.id,
+            "com.k2.sample.json.comments.postId": obj.postId,
+            "com.k2.sample.json.comments.name": obj.name,
+            "com.k2.sample.json.comments.email": obj.email,
+            "com.k2.sample.json.comments.body": obj.body
+        });
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments/' + parameters["com.k2.sample.json.comments.id"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments/' + properties["com.k2.sample.json.comments.id"]);
     xhr.send();
 }
 
@@ -498,7 +496,7 @@ function onexecuteCommentsGetByPostId(parameters: SingleRecord, properties: Sing
             });
         }
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments?postId=' + parameters["com.k2.sample.json.comments.postId"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments?postId=' + properties["com.k2.sample.json.comments.postId"]);
     xhr.send();
 }
 
@@ -531,16 +529,14 @@ function onexecuteToDosGetById(parameters: SingleRecord, properties: SingleRecor
         
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
             postResult({
-                "com.k2.sample.json.todos.id": obj[key].id,
-                "com.k2.sample.json.todos.userId": obj[key].userId,
-                "com.k2.sample.json.todos.title": obj[key].title,
-                "com.k2.sample.json.todos.completed": obj[key].completed
+                "com.k2.sample.json.todos.id": obj.id,
+                "com.k2.sample.json.todos.userId": obj.userId,
+                "com.k2.sample.json.todos.title": obj.title,
+                "com.k2.sample.json.todos.completed": obj.completed
             });
-        }
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos/' + parameters["com.k2.sample.json.todos.id"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos/' + properties["com.k2.sample.json.todos.id"]);
     xhr.send();
 }
 
@@ -600,6 +596,6 @@ function onexecuteUsersGetById(parameters: SingleRecord, properties: SingleRecor
             "com.k2.sample.json.users.company.bs": obj.company.bs
         });
     };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/users/' + parameters["com.k2.sample.json.users.id"]);
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/users/' + properties["com.k2.sample.json.users.id"]);
     xhr.send();
 }
