@@ -3,314 +3,322 @@ import '@k2oss/k2-broker-core';
 metadata = {
 	"systemName": "JSONPlaceholder",
 	"displayName": "JSONPlaceholder Broker",
-	"description": "Sample broker for JSONPlaceholder"
+    "description": "Sample broker for JSONPlaceholder",
+    "configuration": {
+        "ServiceURL": {
+          displayName: "JSONPlaceholder Service URL",
+          type: "string",
+          value: "https://jsonplaceholder.typicode.com/"
+        }
+      }
 };
 
-ondescribe = function() {
+ondescribe = function(configuration) {
     postSchema({ objects: {
-                "com.k2.sample.json.posts": {
+                "posts": {
                     displayName: "Posts",
                     description: "Manages Posts",
                     properties: {
-                        "com.k2.sample.json.posts.id": {
+                        "id": {
                             displayName: "ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.posts.userId": {
+                        "userId": {
                             displayName: "User ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.posts.title": {
+                        "title": {
                             displayName: "Title",
                             type: "string"
                         },
-                        "com.k2.sample.json.posts.body": {
+                        "body": {
                             displayName: "Body",
                             type: "string"
                         }
                     },
                     methods: {
-                        "com.k2.sample.json.posts.getList": {
+                        "getList": {
                             displayName: "Get Posts List",
                             type: "list",
-                            outputs: [ "com.k2.sample.json.posts.id", "com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body" ]
+                            outputs: [ "id", "userId", "title", "body" ]
                         },
-                        "com.k2.sample.json.posts.getById": {
+                        "getById": {
                             displayName: "Get Post By ID",
                             type: "read",
-                            inputs: ["com.k2.sample.json.posts.id"],                   
-                            requiredInputs: ["com.k2.sample.json.posts.id"],
-                            outputs: [ "com.k2.sample.json.posts.id", "com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body" ]
+                            inputs: ["id"],                   
+                            requiredInputs: ["id"],
+                            outputs: [ "id", "userId", "title", "body" ]
                         },
-                        "com.k2.sample.json.posts.getByUserId": {
+                        "getByUserId": {
                             displayName: "Get Posts By User ID",
                             type: "list",
-                            inputs: ["com.k2.sample.json.posts.userId"],   
-                            requiredInputs: ["com.k2.sample.json.posts.userId"],
-                            outputs: [ "com.k2.sample.json.posts.id", "com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body" ]
+                            inputs: ["userId"],   
+                            requiredInputs: ["userId"],
+                            outputs: [ "id", "userId", "title", "body" ]
                         },
-                        "com.k2.sample.json.posts.create": {
+                        "create": {
                             displayName: "Create Post",
                             type: "create",
-                            inputs: ["com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body"],
-                            outputs: [ "com.k2.sample.json.posts.id", "com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body" ]
+                            inputs: ["userId", "title", "body"],
+                            outputs: [ "id", "userId", "title", "body" ]
                         },
-                        "com.k2.sample.json.posts.update": {
+                        "update": {
                             displayName: "Update Post",
                             type: "update",
-                            inputs: ["com.k2.sample.json.posts.id","com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body"],
-                            requiredInputs: ["com.k2.sample.json.posts.id"],
-                            outputs: [ "com.k2.sample.json.posts.id", "com.k2.sample.json.posts.userId", "com.k2.sample.json.posts.title", "com.k2.sample.json.posts.body" ]
+                            inputs: ["id","userId", "title", "body"],
+                            requiredInputs: ["id"],
+                            outputs: [ "id", "userId", "title", "body" ]
                         },
-                        "com.k2.sample.json.posts.delete": {
+                        "delete": {
                             displayName: "Delete Post",
                             type: "delete",
-                            inputs: ["com.k2.sample.json.posts.id"],
-                            requiredInputs: ["com.k2.sample.json.posts.id"]
+                            inputs: ["id"],
+                            requiredInputs: ["id"]
                         }
                     }
                 },
-                "com.k2.sample.json.comments": {
+                "comments": {
                     displayName: "Comments",
                     description: "Manages Comments",
                     properties: {
-                        "com.k2.sample.json.comments.id": {
+                        "id": {
                             displayName: "ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.comments.postId": {
+                        "postId": {
                             displayName: "Post ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.comments.name": {
+                        "name": {
                             displayName: "Name",
                             type: "string"
                         },
-                        "com.k2.sample.json.comments.email": {
+                        "email": {
                             displayName: "Email",
                             type: "string"
                         },
-                        "com.k2.sample.json.comments.body": {
+                        "body": {
                             displayName: "Body",
                             type: "string"
                         }
                     },
                     methods: {
-                        "com.k2.sample.json.comments.getList": {
+                        "getList": {
                             displayName: "Get Comments List",
                             type: "list",
-                            outputs: [ "com.k2.sample.json.comments.id", "com.k2.sample.json.comments.postId", "com.k2.sample.json.comments.name", "com.k2.sample.json.comments.email", "com.k2.sample.json.comments.body" ]
+                            outputs: [ "id", "postId", "name", "email", "body" ]
                         },
-                        "com.k2.sample.json.comments.getById": {
+                        "getById": {
                             displayName: "Get Comment By ID",
                             type: "read",
-                            inputs: ["com.k2.sample.json.comments.id"],
-                            requiredInputs: ["com.k2.sample.json.comments.id"],
-                            outputs: [ "com.k2.sample.json.comments.id", "com.k2.sample.json.comments.postId", "com.k2.sample.json.comments.name", "com.k2.sample.json.comments.email", "com.k2.sample.json.comments.body" ]
+                            inputs: ["id"],
+                            requiredInputs: ["id"],
+                            outputs: [ "id", "postId", "name", "email", "body" ]
                         },
-                        "com.k2.sample.json.comments.getByPostId": {
+                        "getByPostId": {
                             displayName: "Get Comments By Post ID",
                             type: "list",
-                            inputs: ["com.k2.sample.json.comments.postId"],      
-                            requiredInputs: ["com.k2.sample.json.comments.postId"],
-                            outputs: [ "com.k2.sample.json.comments.id", "com.k2.sample.json.comments.postId", "com.k2.sample.json.comments.name", "com.k2.sample.json.comments.email", "com.k2.sample.json.comments.body" ]
+                            inputs: ["postId"],      
+                            requiredInputs: ["postId"],
+                            outputs: [ "id", "postId", "name", "email", "body" ]
                         }
                     }
                 },
-                "com.k2.sample.json.todos": {
+                "todos": {
                     displayName: "To Do",
                     description: "Manages To Dos",
                     properties: {
-                        "com.k2.sample.json.todos.id": {
+                        "id": {
                             displayName: "ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.todos.userId": {
+                        "userId": {
                             displayName: "User ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.todos.title": {
+                        "title": {
                             displayName: "Title",
                             type: "string"
                         },
-                        "com.k2.sample.json.todos.completed": {
+                        "completed": {
                             displayName: "Completed",
                             type: "boolean"
                         }
                     },
                     methods: {
-                        "com.k2.sample.json.todos.getList": {
+                        "getList": {
                             displayName: "Get To Dos List",
                             type: "list",
-                            outputs: [ "com.k2.sample.json.todos.id", "com.k2.sample.json.todos.userId", "com.k2.sample.json.todos.title", "com.k2.sample.json.todos.completed" ]
+                            outputs: [ "id", "userId", "title", "completed" ]
                         },
-                        "com.k2.sample.json.todos.getById": {
+                        "getById": {
                             displayName: "Get To Do By ID",
                             type: "read",
-                            inputs: ["com.k2.sample.json.todos.id"],
-                            requiredInputs: ["com.k2.sample.json.todos.id"],
-                            outputs: [ "com.k2.sample.json.todos.id", "com.k2.sample.json.todos.userId", "com.k2.sample.json.todos.title", "com.k2.sample.json.todos.completed" ]
+                            inputs: ["id"],
+                            requiredInputs: ["id"],
+                            outputs: [ "id", "userId", "title", "completed" ]
                         }
                     }
                 },
-                "com.k2.sample.json.users": {
+                "users": {
                     displayName: "Users",
                     description: "Manages Users",
                     properties: {
-                        "com.k2.sample.json.users.id": {
+                        "id": {
                             displayName: "ID",
                             type: "number"
                         },
-                        "com.k2.sample.json.users.name": {
+                        "name": {
                             displayName: "Name",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.username": {
+                        "username": {
                             displayName: "User Name",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.email": {
+                        "email": {
                             displayName: "Email",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.address.street": {
+                        "address.street": {
                             displayName: "Address.Street",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.address.suite": {
+                        "address.suite": {
                             displayName: "Address.Suite",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.address.city": {
+                        "address.city": {
                             displayName: "Address.City",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.address.geo.lat": {
+                        "address.geo.lat": {
                             displayName: "Address.Geo.Latitude",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.address.geo.lng": {
+                        "address.geo.lng": {
                             displayName: "Address.Get.Longitude",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.phone": {
+                        "phone": {
                             displayName: "Phone",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.website": {
+                        "website": {
                             displayName: "Website",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.company.name": {
+                        "company.name": {
                             displayName: "Company.Name",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.company.catchPhrase": {
+                        "company.catchPhrase": {
                             displayName: "Company.CatchPhrase",
                             type: "string"
                         },
-                        "com.k2.sample.json.users.company.bs": {
+                        "company.bs": {
                             displayName: "Company.BS",
                             type: "string"
                         }
                     },
                     methods: {
-                        "com.k2.sample.json.users.getList": {
+                        "getList": {
                             displayName: "Get Users List",
                             type: "list",
-                            outputs: ["com.k2.sample.json.users.id",
-                            "com.k2.sample.json.users.name",
-                            "com.k2.sample.json.users.username",
-                            "com.k2.sample.json.users.email",
-                            "com.k2.sample.json.users.address.street",
-                            "com.k2.sample.json.users.address.suite",
-                            "com.k2.sample.json.users.address.city",
-                            "com.k2.sample.json.users.address.geo.lat",
-                            "com.k2.sample.json.users.address.geo.lng",
-                            "com.k2.sample.json.users.phone",
-                            "com.k2.sample.json.users.website",
-                            "com.k2.sample.json.users.company.name",
-                            "com.k2.sample.json.users.company.catchPhrase",
-                            "com.k2.sample.json.users.company.bs"]
+                            outputs: ["id",
+                            "name",
+                            "username",
+                            "email",
+                            "address.street",
+                            "address.suite",
+                            "address.city",
+                            "address.geo.lat",
+                            "address.geo.lng",
+                            "phone",
+                            "website",
+                            "company.name",
+                            "company.catchPhrase",
+                            "company.bs"]
                         },
-                        "com.k2.sample.json.users.getById": {
+                        "getById": {
                             displayName: "Get Users By ID",
                             type: "read",
-                            inputs: ["com.k2.sample.json.users.id"],
-                            requiredInputs: ["com.k2.sample.json.users.id"],
-                            outputs: ["com.k2.sample.json.users.id",
-                            "com.k2.sample.json.users.name",
-                            "com.k2.sample.json.users.username",
-                            "com.k2.sample.json.users.email",
-                            "com.k2.sample.json.users.address.street",
-                            "com.k2.sample.json.users.address.suite",
-                            "com.k2.sample.json.users.address.city",
-                            "com.k2.sample.json.users.address.geo.lat",
-                            "com.k2.sample.json.users.address.geo.lng",
-                            "com.k2.sample.json.users.phone",
-                            "com.k2.sample.json.users.website",
-                            "com.k2.sample.json.users.company.name",
-                            "com.k2.sample.json.users.company.catchPhrase",
-                            "com.k2.sample.json.users.company.bs"]                        }
+                            inputs: ["id"],
+                            requiredInputs: ["id"],
+                            outputs: ["id",
+                            "name",
+                            "username",
+                            "email",
+                            "address.street",
+                            "address.suite",
+                            "address.city",
+                            "address.geo.lat",
+                            "address.geo.lng",
+                            "phone",
+                            "website",
+                            "company.name",
+                            "company.catchPhrase",
+                            "company.bs"]                        }
                     }
             }
         }
     }
     )};
 
-onexecute = function(objectName, methodName, parameters, properties) {
+onexecute = function(objectName, methodName, parameters, properties, configuration) {
     switch (objectName)
     {
-        case "com.k2.sample.json.posts": onexecutePosts(methodName, parameters, properties); break;
-        case "com.k2.sample.json.comments": onexecuteComments(methodName, parameters, properties); break;
-        case "com.k2.sample.json.todos": onexecuteToDos(methodName, parameters, properties); break;
-        case "com.k2.sample.json.users": onexecuteUsers(methodName, parameters, properties); break;
+        case "posts": onexecutePosts(methodName, parameters, properties, configuration); break;
+        case "comments": onexecuteComments(methodName, parameters, properties, configuration); break;
+        case "todos": onexecuteToDos(methodName, parameters, properties, configuration); break;
+        case "users": onexecuteUsers(methodName, parameters, properties, configuration); break;
         default: throw new Error("The object " + objectName + " is not supported.");
     }
 }
 
-function onexecutePosts(methodName: string, parameters: SingleRecord, properties: SingleRecord) {
+function onexecutePosts(methodName: string, parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
     switch (methodName)
     {
-        case "com.k2.sample.json.posts.getList": onexecutePostsGetList(parameters, properties); break;
-        case "com.k2.sample.json.posts.getById": onexecutePostsGetById(parameters, properties); break;
-        case "com.k2.sample.json.posts.getByUserId": onexecutePostsGetByUserId(parameters, properties); break;
-        case "com.k2.sample.json.posts.create": onexecutePostsCreate(parameters, properties); break;
-        case "com.k2.sample.json.posts.update": onexecutePostsUpdate(parameters, properties); break;
-        case "com.k2.sample.json.posts.delete": onexecutePostsDelete(parameters, properties); break;
-        case "com.k2.sample.json.posts.delete": onexecuteToDosGetList(parameters, properties); break;
+        case "getList": onexecutePostsGetList(parameters, properties, configuration); break;
+        case "getById": onexecutePostsGetById(parameters, properties, configuration); break;
+        case "getByUserId": onexecutePostsGetByUserId(parameters, properties, configuration); break;
+        case "create": onexecutePostsCreate(parameters, properties, configuration); break;
+        case "update": onexecutePostsUpdate(parameters, properties, configuration); break;
+        case "delete": onexecutePostsDelete(parameters, properties, configuration); break;
         default: throw new Error("The method " + methodName + " is not supported.");
     }
 }
 
-function onexecuteComments(methodName: string, parameters: SingleRecord, properties: SingleRecord) {
+function onexecuteComments(methodName: string, parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
     switch (methodName)
     {
-        case "com.k2.sample.json.comments.getList": onexecuteCommentsGetList(parameters, properties); break;
-        case "com.k2.sample.json.comments.getById": onexecuteCommentsGetById(parameters, properties); break;
-        case "com.k2.sample.json.comments.getByPostId": onexecuteCommentsGetByPostId(parameters, properties); break;
+        case "getList": onexecuteCommentsGetList(parameters, properties, configuration); break;
+        case "getById": onexecuteCommentsGetById(parameters, properties, configuration); break;
+        case "getByPostId": onexecuteCommentsGetByPostId(parameters, properties, configuration); break;
         default: throw new Error("The method " + methodName + " is not supported.");
     }
 }
 
-function onexecuteToDos(methodName: string, parameters: SingleRecord, properties: SingleRecord) {
+function onexecuteToDos(methodName: string, parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
     switch (methodName)
     {
-        case "com.k2.sample.json.todos.getList": onexecuteToDosGetList(parameters, properties); break;
-        case "com.k2.sample.json.todos.getById": onexecuteToDosGetById(parameters, properties); break;
+        case "getList": onexecuteToDosGetList(parameters, properties, configuration); break;
+        case "getById": onexecuteToDosGetById(parameters, properties, configuration); break;
         default: throw new Error("The method " + methodName + " is not supported.");
     }
 }
 
-function onexecuteUsers(methodName: string, parameters: SingleRecord, properties: SingleRecord) {
+function onexecuteUsers(methodName: string, parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
     switch (methodName)
     {
-        case "com.k2.sample.json.users.getList": onexecuteUsersGetList(parameters, properties); break;
-        case "com.k2.sample.json.users.getById": onexecuteUsersGetById(parameters, properties); break;
+        case "getList": onexecuteUsersGetList(parameters, properties, configuration); break;
+        case "getById": onexecuteUsersGetById(parameters, properties, configuration); break;
         default: throw new Error("The method " + methodName + " is not supported.");
     }
 }
-function onexecutePostsGetList(parameters: SingleRecord, properties: SingleRecord) {
+
+function onexecutePostsGetList(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"] + 'posts/';
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
@@ -318,20 +326,19 @@ function onexecutePostsGetList(parameters: SingleRecord, properties: SingleRecor
         
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.posts.id": obj[key].id,
-                "com.k2.sample.json.posts.userId": obj[key].userId,
-                "com.k2.sample.json.posts.title": obj[key].title,
-                "com.k2.sample.json.posts.body": obj[key].body
-            });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts');
-    xhr.send();
+        postResult(obj.map(x => {return{
+                "id": x.id,
+                "userId": x.userId,
+                "title": x.title,
+                "body": x.body
+        }}));
+    },
+    xhr.open("GET", urlValue);
+    xhr.send();     
 }
 
-function onexecutePostsGetById(parameters: SingleRecord, properties: SingleRecord) {
+function onexecutePostsGetById(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"] + 'posts/';
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
@@ -340,17 +347,18 @@ function onexecutePostsGetById(parameters: SingleRecord, properties: SingleRecor
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
         postResult({
-            "com.k2.sample.json.posts.id": obj.id,
-            "com.k2.sample.json.posts.userId": obj.userId,
-            "com.k2.sample.json.posts.title": obj.title,
-            "com.k2.sample.json.posts.body": obj.body
+            "id": obj.id,
+            "userId": obj.userId,
+            "title": obj.title,
+            "body": obj.body
         });
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
+    },
+    xhr.open("GET", urlValue + encodeURIComponent(properties["id"]));
     xhr.send();
 }
 
-function onexecutePostsGetByUserId(parameters: SingleRecord, properties: SingleRecord) {
+function onexecutePostsGetByUserId(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"] + 'posts?userId=';
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
@@ -358,28 +366,29 @@ function onexecutePostsGetByUserId(parameters: SingleRecord, properties: SingleR
         
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.posts.id": obj[key].id,
-                "com.k2.sample.json.posts.userId": obj[key].userId,
-                "com.k2.sample.json.posts.title": obj[key].title,
-                "com.k2.sample.json.posts.body": obj[key].body
-            });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts?userId=' + properties["com.k2.sample.json.posts.userId"]);
+        postResult(obj.map(x => {return{
+            "id": x.id,
+            "userId": x.userId,
+            "title": x.title,
+            "body": x.body
+        }}));
+    },
+    xhr.open("GET", urlValue + encodeURIComponent(properties["userId"]));
     xhr.send();
 }
 
-function onexecutePostsCreate(parameters: SingleRecord, properties: SingleRecord) {
+
+function onexecutePostsCreate(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"] + 'posts/';
     var data = JSON.stringify({
-        "userId": properties["com.k2.sample.json.posts.userId"],
-        "title": properties["com.k2.sample.json.posts.title"],
-        "body": properties["com.k2.sample.json.posts.body"]
-      });
+        "userId": properties["userId"],
+        "title": properties["title"],
+        "body": properties["body"]
+    });
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
+
         if (xhr.readyState !== 4) return;
         // look for 'created' code
         if (xhr.status !== 201) throw new Error("Failed with status " + xhr.status);
@@ -387,24 +396,152 @@ function onexecutePostsCreate(parameters: SingleRecord, properties: SingleRecord
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
         postResult({
-            "com.k2.sample.json.posts.id": obj.id,
-            "com.k2.sample.json.posts.userId": obj.userId,
-            "com.k2.sample.json.posts.title": obj.title,
-            "com.k2.sample.json.posts.body": obj.body
+            "id": obj.id,
+            "userId": obj.userId,
+            "title": obj.title,
+            "body": obj.body
         });
-    };
-    xhr.open("POST", "https://jsonplaceholder.typicode.com/posts");
+    },      
+    xhr.open("POST", urlValue);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
+    xhr.send(data); 
 }
 
-function onexecutePostsUpdate(parameters: SingleRecord, properties: SingleRecord) {
-    var data = JSON.stringify({
-        "userId": properties["com.k2.sample.json.posts.userId"],
-        "title": properties["com.k2.sample.json.posts.title"],
-        "body": properties["com.k2.sample.json.posts.body"]
-      });
+function onexecutePostsUpdate(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+        var urlValue = configuration["ServiceURL"] + 'posts/';
+        var data = JSON.stringify({
+            "userId": properties["userId"],
+            "title": properties["title"],
+            "body": properties["body"]
+        });
+    
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== 4) return;
+            if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+            
+            //console.log(xhr.responseText);
+            var obj = JSON.parse(xhr.responseText);
+            postResult({
+                "id": obj.id,
+                "userId": obj.userId,
+                "title": obj.title,
+                "body": obj.body
+            });
+        },
+        xhr.open("PUT", urlValue + encodeURIComponent(properties["id"]));
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
+}
 
+function onexecutePostsDelete(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"];
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+        //console.log(xhr.responseText);
+    },
+
+    xhr.open("DELETE", urlValue + 'posts/' + encodeURIComponent(properties["id"]));
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+
+}
+
+function onexecuteCommentsGetList(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"] + 'comments';
+    console.log("urlValue: " + urlValue)
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+        
+        console.log(xhr.responseText);
+        var obj = JSON.parse(xhr.responseText);
+        postResult(obj.map(x => {return{
+            "id": x.id,
+            "postId": x.postId,
+            "name": x.name,
+            "email": x.email,
+            "body": x.body
+        }}));
+    },
+
+    xhr.open("GET", urlValue);
+    xhr.send();
+    //console.log("response header" + xhr.getResponseHeader);
+}
+
+function onexecuteCommentsGetById(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"];
+    var xhr = new XMLHttpRequest();
+    
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+        
+        //console.log("responseText: " + xhr.responseText);
+        var obj = JSON.parse(xhr.responseText);
+        postResult({
+            "id": obj.id,
+            "postId": obj.postId,
+            "name": obj.name,
+            "email": obj.email,
+            "body": obj.body
+        });
+    },
+
+    
+    xhr.open("GET", urlValue + 'comments/' + encodeURIComponent(properties["id"]));
+    xhr.send();   
+}
+
+function onexecuteCommentsGetByPostId(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord){
+    var urlValue = configuration["ServiceURL"];
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+        
+        //console.log(xhr.responseText);
+        var obj = JSON.parse(xhr.responseText);
+        postResult(obj.map(x => {return{
+            "id": x.id,
+            "postId": x.postId,
+            "name": x.name,
+            "email": x.email,
+            "body": x.body
+        }}));
+    },
+    xhr.open("GET", urlValue + '/comments?postId=' + encodeURIComponent(properties["postId"]));
+    xhr.send();
+}
+
+function onexecuteToDosGetList(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"];
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+        
+        //console.log(xhr.responseText);
+        var obj = JSON.parse(xhr.responseText);
+        postResult(obj.map(x => {return{
+                "id": x.id,
+                "userId": x.userId,
+                "title": x.title,
+                "completed": x.completed
+            }}));
+    },
+    xhr.open("GET", urlValue + 'todos/');
+    xhr.send();  
+}
+
+function onexecuteToDosGetById(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"];
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
@@ -413,30 +550,18 @@ function onexecutePostsUpdate(parameters: SingleRecord, properties: SingleRecord
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
         postResult({
-            "com.k2.sample.json.posts.id": obj.id,
-            "com.k2.sample.json.posts.userId": obj.userId,
-            "com.k2.sample.json.posts.title": obj.title,
-            "com.k2.sample.json.posts.body": obj.body
+            "id": obj.id,
+            "userId": obj.userId,
+            "title": obj.title,
+            "completed": obj.completed
         });
-    };
-    xhr.open("PUT", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
+    },
+    xhr.open("GET", urlValue + 'todos/' + encodeURIComponent(properties["id"]));
+    xhr.send();  
 }
 
-function onexecutePostsDelete(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        //console.log(xhr.responseText);
-    };
-    xhr.open("DELETE", 'https://jsonplaceholder.typicode.com/posts/' + properties["com.k2.sample.json.posts.id"]);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
-}
-
-function onexecuteCommentsGetList(parameters: SingleRecord, properties: SingleRecord) {
+function onexecuteUsersGetList(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+    var urlValue = configuration["ServiceURL"];
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
@@ -444,158 +569,55 @@ function onexecuteCommentsGetList(parameters: SingleRecord, properties: SingleRe
         
         //console.log(xhr.responseText);
         var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
+        postResult(obj.map(x => {return{
+                "id": x.id,
+                "name": x.name,
+                "username": x.username,
+                "email": x.email,
+                "address.street": x.address.street,
+                "address.suite": x.address.suite,
+                "address.city": x.address.city,
+                "address.geo.lat": x.address.geo.lat,
+                "address.geo.lng": x.address.geo.lng,
+                "phone": x.phone,
+                "website": x.website,
+                "company.name": x.company.name,
+                "company.catchPhrase": x.company.catchPhrase,
+                "company.bs": x.company.bs
+            }}));
+        },
+    
+    xhr.open("GET", urlValue + 'users/');
+    xhr.send();
+}
+
+function onexecuteUsersGetById(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
+        var urlValue = configuration["ServiceURL"];
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== 4) return;
+            if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
+            
+            //console.log(xhr.responseText);
+            var obj = JSON.parse(xhr.responseText);
             postResult({
-                "com.k2.sample.json.comments.id": obj[key].id,
-                "com.k2.sample.json.comments.postId": obj[key].postId,
-                "com.k2.sample.json.comments.name": obj[key].name,
-                "com.k2.sample.json.comments.email": obj[key].email,
-                "com.k2.sample.json.comments.body": obj[key].body
+                "id": obj.id,
+                "name": obj.name,
+                "username": obj.username,
+                "email": obj.email,
+                "address.street": obj.address.street,
+                "address.suite": obj.address.suite,
+                "address.city": obj.address.city,
+                "address.geo.lat": obj.address.geo.lat,
+                "address.geo.lng": obj.address.geo.lng,
+                "phone": obj.phone,
+                "website": obj.website,
+                "company.name": obj.company.name,
+                "company.catchPhrase": obj.company.catchPhrase,
+                "company.bs": obj.company.bs
             });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments');
-    xhr.send();
-}
+        },
 
-function onexecuteCommentsGetById(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-        postResult({
-            "com.k2.sample.json.comments.id": obj.id,
-            "com.k2.sample.json.comments.postId": obj.postId,
-            "com.k2.sample.json.comments.name": obj.name,
-            "com.k2.sample.json.comments.email": obj.email,
-            "com.k2.sample.json.comments.body": obj.body
-        });
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments/' + properties["com.k2.sample.json.comments.id"]);
-    xhr.send();
-}
-
-function onexecuteCommentsGetByPostId(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.comments.id": obj[key].id,
-                "com.k2.sample.json.comments.postId": obj[key].postId,
-                "com.k2.sample.json.comments.name": obj[key].name,
-                "com.k2.sample.json.comments.email": obj[key].email,
-                "com.k2.sample.json.comments.body": obj[key].body
-            });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/comments?postId=' + properties["com.k2.sample.json.comments.postId"]);
-    xhr.send();
-}
-
-function onexecuteToDosGetList(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.todos.id": obj[key].id,
-                "com.k2.sample.json.todos.userId": obj[key].userId,
-                "com.k2.sample.json.todos.title": obj[key].title,
-                "com.k2.sample.json.todos.completed": obj[key].completed
-            });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos');
-    xhr.send();
-}
-
-function onexecuteToDosGetById(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-            postResult({
-                "com.k2.sample.json.todos.id": obj.id,
-                "com.k2.sample.json.todos.userId": obj.userId,
-                "com.k2.sample.json.todos.title": obj.title,
-                "com.k2.sample.json.todos.completed": obj.completed
-            });
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos/' + properties["com.k2.sample.json.todos.id"]);
-    xhr.send();
-}
-
-function onexecuteUsersGetList(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-        for (var key in obj) {
-            postResult({
-                "com.k2.sample.json.users.id": obj[key].id,
-                "com.k2.sample.json.users.name": obj[key].name,
-                "com.k2.sample.json.users.username": obj[key].username,
-                "com.k2.sample.json.users.email": obj[key].email,
-                "com.k2.sample.json.users.address.street": obj[key].address.street,
-                "com.k2.sample.json.users.address.suite": obj[key].address.suite,
-                "com.k2.sample.json.users.address.city": obj[key].address.city,
-                "com.k2.sample.json.users.address.geo.lat": obj[key].address.geo.lat,
-                "com.k2.sample.json.users.address.geo.lng": obj[key].address.geo.lng,
-                "com.k2.sample.json.users.phone": obj[key].phone,
-                "com.k2.sample.json.users.website": obj[key].website,
-                "com.k2.sample.json.users.company.name": obj[key].company.name,
-                "com.k2.sample.json.users.company.catchPhrase": obj[key].company.catchPhrase,
-                "com.k2.sample.json.users.company.bs": obj[key].company.bs
-            });
-        }
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/users');
-    xhr.send();
-}
-
-function onexecuteUsersGetById(parameters: SingleRecord, properties: SingleRecord) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
-        
-        //console.log(xhr.responseText);
-        var obj = JSON.parse(xhr.responseText);
-        postResult({
-            "com.k2.sample.json.users.id": obj.id,
-            "com.k2.sample.json.users.name": obj.name,
-            "com.k2.sample.json.users.username": obj.username,
-            "com.k2.sample.json.users.email": obj.email,
-            "com.k2.sample.json.users.address.street": obj.address.street,
-            "com.k2.sample.json.users.address.suite": obj.address.suite,
-            "com.k2.sample.json.users.address.city": obj.address.city,
-            "com.k2.sample.json.users.address.geo.lat": obj.address.geo.lat,
-            "com.k2.sample.json.users.address.geo.lng": obj.address.geo.lng,
-            "com.k2.sample.json.users.phone": obj.phone,
-            "com.k2.sample.json.users.website": obj.website,
-            "com.k2.sample.json.users.company.name": obj.company.name,
-            "com.k2.sample.json.users.company.catchPhrase": obj.company.catchPhrase,
-            "com.k2.sample.json.users.company.bs": obj.company.bs
-        });
-    };
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/users/' + properties["com.k2.sample.json.users.id"]);
-    xhr.send();
+        xhr.open("GET", urlValue + 'users/' + encodeURIComponent(properties["id"]));
+        xhr.send();
 }
