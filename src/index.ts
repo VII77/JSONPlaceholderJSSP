@@ -451,14 +451,14 @@ function onexecutePostsDelete(parameters: SingleRecord, properties: SingleRecord
 
 function onexecuteCommentsGetList(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
     var urlValue = configuration["ServiceURL"] + 'comments';
-    console.log("urlValue: " + urlValue)
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
+        console.log(xhr.responseText);
         if (xhr.readyState !== 4) return;
         if (xhr.status !== 200) throw new Error("Failed with status " + xhr.status);
         
-        console.log(xhr.responseText);
+        
         var obj = JSON.parse(xhr.responseText);
         postResult(obj.map(x => {return{
             "id": x.id,
@@ -471,7 +471,6 @@ function onexecuteCommentsGetList(parameters: SingleRecord, properties: SingleRe
 
     xhr.open("GET", urlValue);
     xhr.send();
-    //console.log("response header" + xhr.getResponseHeader);
 }
 
 function onexecuteCommentsGetById(parameters: SingleRecord, properties: SingleRecord, configuration: SingleRecord) {
@@ -516,7 +515,9 @@ function onexecuteCommentsGetByPostId(parameters: SingleRecord, properties: Sing
             "body": x.body
         }}));
     },
-    xhr.open("GET", urlValue + '/comments?postId=' + encodeURIComponent(properties["postId"]));
+
+
+    xhr.open("GET", urlValue + 'comments?postId=' + encodeURIComponent(properties["postId"]));
     xhr.send();
 }
 
