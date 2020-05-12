@@ -13,7 +13,7 @@ metadata = {
     }
 };
 
-ondescribe = async function (configuration): Promise<void> {
+ondescribe = async function ({configuration}): Promise<void> {
     postSchema({
         objects: {
             "posts": {
@@ -268,7 +268,7 @@ ondescribe = async function (configuration): Promise<void> {
     )
 };
 
-onexecute = async function (objectName, methodName, parameters, properties, configuration): Promise<void> {
+onexecute = async function ({objectName, methodName, parameters, properties, configuration}): Promise<void> {
     switch (objectName) {
         case "posts": await onexecutePosts(methodName, parameters, properties, configuration); break;
         case "comments": await onexecuteComments(methodName, parameters, properties, configuration); break;
