@@ -368,6 +368,8 @@ function onexecutePostsGetById(parameters: SingleRecord, properties: SingleRecor
             }
         }
 
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
+
         xhr.open("GET", urlValue + encodeURIComponent(properties["id"]));
         xhr.send();
     });
@@ -397,6 +399,8 @@ function onexecutePostsGetByUserId(parameters: SingleRecord, properties: SingleR
             }
 
         }
+
+        if(typeof properties["userId"] !== "number") throw new Error("properties[\"userId\"] is not of type number");
         xhr.open("GET", urlValue + encodeURIComponent(properties["userId"]));
         xhr.send();
     });
@@ -464,6 +468,8 @@ function onexecutePostsUpdate(parameters: SingleRecord, properties: SingleRecord
                 reject(e);
             }
         }
+
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
         xhr.open("PUT", urlValue + encodeURIComponent(properties["id"]));
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);
@@ -483,6 +489,8 @@ function onexecutePostsDelete(parameters: SingleRecord, properties: SingleRecord
                 reject(e);
             }
         }
+
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
         xhr.open("DELETE", urlValue + 'posts/' + encodeURIComponent(properties["id"]));
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
@@ -541,6 +549,8 @@ function onexecuteCommentsGetById(parameters: SingleRecord, properties: SingleRe
                 reject(error);
             }
         }
+
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
         xhr.open("GET", urlValue + 'comments/' + encodeURIComponent(properties["id"]));
         xhr.send();
     });
@@ -571,6 +581,8 @@ function onexecuteCommentsGetByPostId(parameters: SingleRecord, properties: Sing
             }
 
         }
+
+        if(typeof properties["postId"] !== "number") throw new Error("properties[\"postId\"] is not of type number");
         xhr.open("GET", urlValue + 'comments?postId=' + encodeURIComponent(properties["postId"]));
         xhr.send();
     });
@@ -627,6 +639,8 @@ function onexecuteToDosGetById(parameters: SingleRecord, properties: SingleRecor
             }
 
         }
+
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
         xhr.open("GET", urlValue + 'todos/' + encodeURIComponent(properties["id"]));
         xhr.send();
     });
@@ -702,6 +716,8 @@ function onexecuteUsersGetById(parameters: SingleRecord, properties: SingleRecor
                 reject(error);
             }
         }
+
+        if(typeof properties["id"] !== "number") throw new Error("properties[\"id\"] is not of type number");
         xhr.open("GET", urlValue + 'users/' + encodeURIComponent(properties["id"]));
         xhr.send();
     });
