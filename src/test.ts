@@ -16,7 +16,7 @@ test('describe returns the hardcoded instance', async t => {
         schema = result;
     });
 
-    await Promise.resolve<void>(ondescribe());
+    await Promise.resolve<void>(ondescribe({configuration: {}}));
     
     t.deepEqual(schema, {
         objects: {
@@ -71,7 +71,8 @@ test('execute fails with the wrong parameters', async t => {
         methodName: 'unused',
         parameters: {},
         properties: {},
-        schema: {}
+        schema: {},
+        configuration: {}
     })));
     
     t.deepEqual(error.message, 'The object test1 is not supported.');
@@ -81,7 +82,8 @@ test('execute fails with the wrong parameters', async t => {
         methodName: 'test2',
         parameters: {},
         properties: {},
-        schema: {}
+        schema: {},
+        configuration: {}
     })));
     
     t.deepEqual(error.message, 'The method test2 is not supported.');
